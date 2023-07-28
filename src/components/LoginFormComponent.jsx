@@ -2,7 +2,9 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
 import { login } from '../services/authServices';
+import { loginMessage } from "../utils/errorMessages";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 function LoginFormComponent() {
   const {
@@ -15,9 +17,10 @@ function LoginFormComponent() {
     try {
       console.log(data);
       const response = await login(data);
+      toast.success("Bienvenido...");
       navigate("/");
     } catch (e) {
-      console.log(e);
+      toast.error(loginMessage[e.code] || "Ha ocurrido un error, intentelo nuevamente.");
     }
   };
   return (

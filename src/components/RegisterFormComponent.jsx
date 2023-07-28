@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
 import { create } from '../services/authServices';
+import { registroMessage } from "../utils/errorMessages";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
@@ -19,8 +20,7 @@ function RegisterFormComponent() {
       navigate("/login");
       toast.success("Usuario creado con éxito");
     }catch (e){
-      console.log(e);
-      toast.success(e.message);
+      toast.error(registroMessage[e.code] || "Ha ocurrido un error, intentelo nuevamente.");
     }
     
   };
