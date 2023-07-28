@@ -5,6 +5,7 @@ import { login } from '../services/authServices';
 import { loginMessage } from "../utils/errorMessages";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import InputComponent from './InputComponent';
 
 function LoginFormComponent() {
   const {
@@ -12,7 +13,9 @@ function LoginFormComponent() {
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "onChange" });
+
   const navigate = useNavigate();
+
   const onSubmit = async (data) => {
     try {
       console.log(data);
@@ -23,36 +26,45 @@ function LoginFormComponent() {
       toast.error(loginMessage[e.code] || "Ha ocurrido un error, intentelo nuevamente.");
     }
   };
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Email</Form.Label>
-        <Form.Control type="email" {...register("email", { required: true })}/>
-        {errors?.email && <div>Este campo es obligatorio</div>}
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Contraseña</Form.Label>
-        <Form.Control
-          type="password" 
-          {...register("password", {required: true, minLength: 8, maxLength: 16,})}
-        />
-        {errors?.password?.type === "required" && (
-          <div>Este campo es obligatorio</div>
-        )}
-        {errors?.password?.type === "minLength" && (
-          <div>Debe introducir al menos 8 caracteres</div>
-        )}
-        {errors?.password?.type === "maxLength" && (
-          <div>Debe introducir como maximo 16 caracteres</div>
-        )}
-      </Form.Group>
+      <InputComponent
+        type="email"
+        label="Email"
+        placeholder="Ingrese su email"
+        register={{ ...register("email", { required: true }) }}
+        errors={errors}
+        name="email"
+      />
+      <InputComponent
+        type="password"
+        label="Contraseña"
+        placeholder="Ingrese su password"
+        register={{
+          ...register("password", {
+            required: true,
+            minLength: 6,
+            maxLength: 12,
+          }),
+        }}
+        errors={errors}
+        name="password"
+      >
+        <Form.Text className="text-muted">
+          {errors?.password?.type === "minLength" && (
+            <div>Debe introducir al menos 6 caracteres</div>
+          )}
+          {errors?.password?.type === "maxLength" && (
+            <div>Debe introducir como máximo 12 caracteres</div>
+          )}
+        </Form.Text>
+      </InputComponent>
       <Button type="submit" variant="success">
         Aceptar
       </Button>
     </Form>
   );
-    
 }
 
 export default LoginFormComponent;

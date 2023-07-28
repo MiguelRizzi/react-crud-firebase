@@ -5,6 +5,7 @@ import { create, getById, update, deleteProducto } from '../services/productosSe
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from 'react-hot-toast';
+import InputComponent from './InputComponent';
 
 function ProductoFormComponent() {
   const { register, handleSubmit, setValue } = useForm({ mode: "onChange" });
@@ -62,26 +63,31 @@ function ProductoFormComponent() {
   return (
     <div>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Nombre</Form.Label>
-          <Form.Control type="text" {...register("title")}/>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Precio</Form.Label>
-          <Form.Control type="number" {...register("price")}/>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Descripcion</Form.Label>
-          <Form.Control type="text" {...register("description")}/>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Imagen</Form.Label>
-          <Form.Control type="text" {...register("thumbnail")}/>
-        </Form.Group>
-
+        <InputComponent
+          label="Nombre"
+          placeholder="Ingrese el nombre"
+          register={{ ...register("title", { required: true }) }}
+          name="title"
+        />
+        <InputComponent
+          type="number"
+          label="Precio"
+          placeholder="Ingrese el precio"
+          register={{ ...register("price", { required: true }) }}
+          name="price"
+        />
+        <InputComponent
+          label="Descripción"
+          placeholder="Ingrese la descripción"
+          register={{ ...register("description", { required: true }) }}
+          name="description"
+        />
+        <InputComponent
+          label="Imagen"
+          placeholder="Ingrese la url de la imagen"
+          register={{ ...register("thumbnail", { required: true }) }}
+          name="thumbnail"
+        />
         <Button variant="success" type="submit">
           {id ? 'Guardar' : 'Aceptar'}
         </Button>
