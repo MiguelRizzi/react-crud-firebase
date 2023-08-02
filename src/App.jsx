@@ -4,7 +4,12 @@ function App() {
   return (
     <div>
       <AppRouter/>
-      <Toaster/>
+      <Toaster
+        toastOptions={{
+          success: { className: 'alert alert-success' },
+          error: { className: 'alert alert-danger' },
+        }}
+      />
     </div>
   )
 }
