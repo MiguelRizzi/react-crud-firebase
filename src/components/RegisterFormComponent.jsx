@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
 import { create } from '../services/authServices';
-import { registroMessage } from "../utils/errorMessages";
+import { errorMessages } from "../utils/errorMessages";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import InputComponent from './InputComponent';
@@ -23,7 +23,7 @@ function RegisterFormComponent() {
       navigate("/login");
       toast.success("Usuario creado con éxito");
     } catch (e) {
-      toast.error(registroMessage[e.code] || "Ha ocurrido un error, intentelo nuevamente.");
+      toast.error(errorMessages[e.code] || "Ha ocurrido un error, intentelo nuevamente.");
     }
   };
 
