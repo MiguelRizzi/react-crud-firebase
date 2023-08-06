@@ -18,7 +18,6 @@ function RegisterFormComponent() {
 
   const onSubmit = async (data) => {
     try {
-      console.log("data", data);
       const response = await create(data);
       navigate("/login");
       toast.success("Usuario creado con éxito");

@@ -40,7 +40,6 @@ function ProductoFormComponent() {
         document = await create(data);
         toast.success("Producto creado con éxito");
       }
-      console.log(document);
     } catch (e) {
       console.log(e);
     }

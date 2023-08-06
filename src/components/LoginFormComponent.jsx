@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useForm } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
 import { login } from '../services/authServices';
@@ -6,6 +6,8 @@ import { errorMessages } from "../utils/errorMessages";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import InputComponent from './InputComponent';
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 function LoginFormComponent() {
   const {
@@ -14,13 +16,14 @@ function LoginFormComponent() {
     formState: { errors },
   } = useForm({ mode: "onChange" });
 
+  const context = useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
-      console.log(data);
       const response = await login(data);
-      toast.success("Bienvenido...");
+      context.handleLogin(response)
+      toast.success(`Bienvenido ${response.name}`);
       navigate("/");
     } catch (e) {
       toast.error(errorMessages[e.code] || "Ha ocurrido un error, intentelo nuevamente.");

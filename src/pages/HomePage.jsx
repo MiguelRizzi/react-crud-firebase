@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
-import firebase from "../config/firebase";
 import Button from "react-bootstrap/Button";
 
 function HomePage() {
-    console.log("firebase:");
-    console.log(firebase);
     return (
         <div>
             <h1>Mi Tienda Online Home</h1>

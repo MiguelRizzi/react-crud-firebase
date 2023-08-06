@@ -11,11 +11,10 @@ function ProductosPage() {
         const request = async () => {
         try {
             const data = await getAll();
-            console.log(data);
             setProductos(data.docs);
             setLoading(false);
-        } catch (error) {
-            console.log(error);
+        } catch (e) {
+            console.log(e);
         }
         };
         request();
