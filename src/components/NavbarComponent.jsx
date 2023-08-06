@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -8,8 +9,8 @@ function NavBarComponent() {
   const context = useAuthContext();
 
   return (
-    <>
-      <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" variant="dark" bg="dark">
+      <Container>
         <Navbar.Brand as={Link} to="/">
           My App
         </Navbar.Brand>
@@ -34,14 +35,17 @@ function NavBarComponent() {
 
             {context.login && (
               <>
-                <NavDropdown title={context.userInfo.name} id="basic-nav-dropdown">
-                  <Nav.Link onClick={context.handleLogout} as={Link} to="/">
+                <NavDropdown
+                  title={context.userInfo.name}
+                  id="basic-nav-dropdown"
+                  className="text-light"
+                >
+                  <NavDropdown.Item onClick={context.handleLogout} as={Link} to="/">
                     Logout
-                  </Nav.Link>
+                  </NavDropdown.Item>
                 </NavDropdown>
-                
-            
-                <NavDropdown title="Productos" id="basic-nav-dropdown">
+
+                <NavDropdown title="Productos" id="basic-nav-dropdown" className="text-light">
                   <NavDropdown.Item as={Link} to="/productos">
                     Ver Productos
                   </NavDropdown.Item>
@@ -53,8 +57,8 @@ function NavBarComponent() {
             )}
           </Nav>
         </Navbar.Collapse>
-      </Navbar>
-    </>
+      </Container>
+    </Navbar>
   );
 }
 

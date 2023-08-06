@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ProductoComponent from "../components/ProductoComponent";
 import { getAll } from "../services/productosServices";
 import Row from "react-bootstrap/Row";
+import { Container } from "react-bootstrap";
 
 
 function ProductosPage() {
@@ -23,13 +24,15 @@ function ProductosPage() {
         return <div>Cargando...</div>;
     } else {
         return (
-            <Row>
-                <h1>Productos</h1>
-                {productos.map((producto) => (
-                <ProductoComponent
-                    key={producto.id} {...producto.data()} id={producto.id}/>
-                ))}
-            </Row>
+            <Container className="text-center p-4">
+                <h1 className="display-5 mb-3">Productos</h1>
+                <Row className="text-center">
+                    {productos.map((producto) => (
+                    <ProductoComponent
+                        key={producto.id} {...producto.data()} id={producto.id}/>
+                    ))}
+                </Row>
+            </Container>
         );
     }
 }

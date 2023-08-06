@@ -16,26 +16,23 @@ function AppRouter() {
     <>
       <Router>
         <AuthProvider>
-          <Container fluid>
-            <NavbarComponent />
-          </Container>
-          <Container>
-          <Routes>
-            <Route path="/" element={ <HomePage/> }/>
-            <Route path="/productos" element={ <ProductosPage/> }/>
-            <Route path="/productos/create" element={<ProductoCreatePage/>}/>
-            <Route path="/productos/detail/:id" element={<ProductoDetailPage/>}/>
-            <Route path="/productos/update/:id" element={<ProductoUpdatePage/>}/>
-            <Route path="/login" element={ <LoginPage/> }/> 
-            <Route path="/register" element={ <RegisterPage/> }/>
-            <Route path="/*" element={ <NotFoundPage/> }/> 
-          </Routes>
+          <NavbarComponent />
+          <Container fluid className="p-0">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/productos" element={<ProductosPage />} />
+              <Route path="/productos/create" element={<ProductoCreatePage />} />
+              <Route path="/productos/detail/:id" element={<ProductoDetailPage />} />
+              <Route path="/productos/update/:id" element={<ProductoUpdatePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/*" element={<NotFoundPage />} />
+            </Routes>
           </Container>
         </AuthProvider>
       </Router>
     </>
-  )
+  );
 }
 
 export default AppRouter;
-        

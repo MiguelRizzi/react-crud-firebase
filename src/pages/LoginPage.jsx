@@ -1,13 +1,14 @@
 import React from 'react';
-import LoginFormComponent from "../components/LoginFormComponent.jsx";
+import Container from 'react-bootstrap/Container';
+import LoginFormComponent from '../components/LoginFormComponent.jsx';
 
 function LoginPage() {
   return (
-    <div>
-      <h1>Login</h1>
+    <Container className='text-center p-4'>
+      <h1 className="display-5 mb-3">Login</h1>
       <LoginFormComponent />
-    </div>
+    </Container>
   );
 }
-export default LoginPage;
 
+export default LoginPage;
