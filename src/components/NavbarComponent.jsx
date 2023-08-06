@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { AuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 function NavBarComponent() {
-  const context = useContext(AuthContext);
+  const context = useAuthContext();
 
   return (
     <>
@@ -41,7 +40,7 @@ function NavBarComponent() {
                   </Nav.Link>
                 </NavDropdown>
                 
-
+            
                 <NavDropdown title="Productos" id="basic-nav-dropdown">
                   <NavDropdown.Item as={Link} to="/productos">
                     Ver Productos

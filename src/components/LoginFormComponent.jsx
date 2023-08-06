@@ -6,8 +6,7 @@ import { errorMessages } from "../utils/errorMessages";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import InputComponent from './InputComponent';
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 function LoginFormComponent() {
   const {
@@ -16,7 +15,7 @@ function LoginFormComponent() {
     formState: { errors },
   } = useForm({ mode: "onChange" });
 
-  const context = useContext(AuthContext);
+  const context = useAuthContext();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
