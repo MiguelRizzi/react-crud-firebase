@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useAuthContext } from '../context/AuthContext';
+import toast from 'react-hot-toast';
 
 function NavBarComponent() {
   const context = useAuthContext();
@@ -40,7 +41,13 @@ function NavBarComponent() {
                 id="basic-nav-dropdown"
                 className="text-light"
               >
-                <NavDropdown.Item onClick={context.handleLogout} as={Link} to="/">
+                <NavDropdown.Item
+                  onClick={() => {
+                    context.handleLogout();
+                    toast.success('Se cerró la sesión correctamente');
+                  }}
+                  as={Link} to="/"
+                >
                   Logout
                 </NavDropdown.Item>
               </NavDropdown>
