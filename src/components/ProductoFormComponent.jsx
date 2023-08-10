@@ -8,7 +8,7 @@ import { toast } from 'react-hot-toast';
 import InputComponent from './InputComponent';
 
 function ProductoFormComponent() {
-  const { register, handleSubmit, setValue } = useForm({ mode: "onChange" });
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm({ mode: "onChange" });
   const [producto, setProducto] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -66,6 +66,7 @@ function ProductoFormComponent() {
           label="Nombre"
           placeholder="Ingrese el nombre"
           register={{ ...register("title", { required: true }) }}
+          errors={errors}
           name="title"
         />
         <InputComponent
@@ -73,18 +74,41 @@ function ProductoFormComponent() {
           label="Precio"
           placeholder="Ingrese el precio"
           register={{ ...register("price", { required: true }) }}
+          errors={errors}
           name="price"
         />
+        <InputComponent
+          label="SKU"
+          placeholder="Ingrese el SKU"
+          register={{
+            ...register("sku", {
+              required: true,
+              minLength: 8,
+              maxLength: 12,
+            }),
+          }}
+          errors={errors}
+          name="sku"
+        >
+          {errors?.sku?.type === "minLength" && (
+            <div>El SKU debe tener al menos 8 caracteres</div>
+          )}
+          {errors?.sku?.type === "maxLength" && (
+            <div>El SKU debe tener como máximo 12 caracteres</div>
+          )}
+        </InputComponent>
         <InputComponent
           label="Descripción"
           placeholder="Ingrese la descripción"
           register={{ ...register("description", { required: true }) }}
+          errors={errors}
           name="description"
         />
         <InputComponent
           label="Imagen"
           placeholder="Ingrese la url de la imagen"
           register={{ ...register("thumbnail", { required: true }) }}
+          errors={errors}
           name="thumbnail"
         />
         <Button variant="success" type="submit">

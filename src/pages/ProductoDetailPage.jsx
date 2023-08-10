@@ -35,6 +35,9 @@ function ProductoDetailPage() {
             <Card.Text>
               <strong>Precio:</strong> ${producto.price}
             </Card.Text>
+            <Card.Text>
+              <strong>SKU:</strong> {producto.sku}
+            </Card.Text>
             <Card.Text>{producto.description}</Card.Text>
           </Card.Body>
         </Card>
