@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import { getById } from "../services/productosServices";
-import { Link } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 
-//Component tipo funcion
 function ProductoDetailPage() {
   const { id } = useParams();
   const [producto, setProducto] = useState({});
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const request = async () => {
       try {
@@ -26,15 +25,22 @@ function ProductoDetailPage() {
     return <div>Cargando ...</div>;
   } else {
     return (
-      
       <Container className="text-center p-4">
-        <h1 className="display-5 mb-3">{producto.title}</h1>
-        <img src={producto.thumbnail} alt={producto.title} />
-        <p>Precio: ${producto.price}</p>
-        <p>{producto.description}</p>
-        <li>
-          <Link to="/Productos">Volver a productos</Link>
-        </li>
+        <Card className="shadow-lg" style={{ padding: "1rem" }}>
+          <Card.Body>
+            <Card.Title className="display-5 mb-3">{producto.title}</Card.Title>
+            <hr className="my-4" />
+            <Card.Img src={producto.thumbnail} alt={producto.title} style={{ maxWidth: "600px" }} />
+            <hr className="my-4" />
+            <Card.Text>
+              <strong>Precio:</strong> ${producto.price}
+            </Card.Text>
+            <Card.Text>{producto.description}</Card.Text>
+          </Card.Body>
+        </Card>
+        <Link to="/Productos" className="mt-4">
+          Volver a productos
+        </Link>
       </Container>
     );
   }

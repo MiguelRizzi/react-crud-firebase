@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { useAuthContext } from "../context/AuthContext";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useAuthContext } from '../context/AuthContext';
 
 function NavBarComponent() {
   const context = useAuthContext();
@@ -34,27 +35,25 @@ function NavBarComponent() {
             )}
 
             {context.login && (
-              <>
-                <NavDropdown
-                  title={context.userInfo.name}
-                  id="basic-nav-dropdown"
-                  className="text-light"
-                >
-                  <NavDropdown.Item onClick={context.handleLogout} as={Link} to="/">
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
-
-                <NavDropdown title="Productos" id="basic-nav-dropdown" className="text-light">
-                  <NavDropdown.Item as={Link} to="/productos">
-                    Ver Productos
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/productos/create">
-                    Crear Productos
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </>
+              <NavDropdown
+                title={context.userInfo.name}
+                id="basic-nav-dropdown"
+                className="text-light"
+              >
+                <NavDropdown.Item onClick={context.handleLogout} as={Link} to="/">
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
             )}
+
+            <NavDropdown title="Productos" id="basic-nav-dropdown" className="text-light">
+              <NavDropdown.Item as={Link} to="/productos">
+                Ver Productos
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/productos/create">
+                Crear Productos
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>

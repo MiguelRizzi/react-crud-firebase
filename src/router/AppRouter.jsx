@@ -10,7 +10,7 @@ import Container from "react-bootstrap/Container";
 import ProductoCreatePage from "../pages/ProductoCreatePage.jsx";
 import ProductoUpdatePage from "../pages/ProductoUpdatePage.jsx";
 import AuthProvider from "../context/AuthContext.jsx";
-
+import FooterComponent from "../components/FooterComponent.jsx";
 function AppRouter() {
   return (
     <>
@@ -30,6 +30,7 @@ function AppRouter() {
             </Routes>
           </Container>
         </AuthProvider>
+        <FooterComponent/>
       </Router>
     </>
   );
