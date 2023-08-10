@@ -1,11 +1,13 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { Button, Form } from "react-bootstrap";
+import { useState } from 'react';
+import { Form } from "react-bootstrap";
 import { create } from '../services/authServices';
 import { errorMessages } from "../utils/errorMessages";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import InputComponent from './InputComponent';
+import BotonLoadComponent from "./BotonLoadComponent";
 
 function RegisterFormComponent() {
   const {
@@ -13,10 +15,11 @@ function RegisterFormComponent() {
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "onChange" });
-
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
+    setLoading(true);
     try {
       const response = await create(data);
       navigate("/login");
@@ -24,6 +27,7 @@ function RegisterFormComponent() {
     } catch (e) {
       toast.error(errorMessages[e.code] || "Ha ocurrido un error, intentelo nuevamente.");
     }
+    setLoading(false);
   };
 
   return (
@@ -75,9 +79,9 @@ function RegisterFormComponent() {
           )}
         </Form.Text>
       </InputComponent>
-      <Button type="submit" variant="success">
+      <BotonLoadComponent type="submit" variant="success" loading={loading}>
         Aceptar
-      </Button>
+      </BotonLoadComponent>
     </Form>
   );
 }

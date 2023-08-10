@@ -6,12 +6,14 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from 'react-hot-toast';
 import InputComponent from './InputComponent';
+import BotonLoadComponent from "./BotonLoadComponent";
 
 function ProductoFormComponent() {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({ mode: "onChange" });
   const [producto, setProducto] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchProducto = async () => {
       try {
@@ -20,6 +22,7 @@ function ProductoFormComponent() {
           setProducto(producto.data());
           setValue("title", producto.data().title);
           setValue("price", producto.data().price);
+          setValue("sku", producto.data().sku);
           setValue("description", producto.data().description);
           setValue("thumbnail", producto.data().thumbnail);
         }
@@ -31,6 +34,7 @@ function ProductoFormComponent() {
   }, [id, setValue]);
 
   const onSubmit = async (data) => {
+    setLoading(true);
     try {
       let document;
       if (id) {
@@ -43,10 +47,12 @@ function ProductoFormComponent() {
     } catch (e) {
       console.log(e);
     }
+    setLoading(false);
     navigate("/productos");
   };
 
   const handleDelete = async () => {
+    setLoading(true);
     const aceptar = window.confirm("¿Estás seguro que deseas eliminar este producto?");
     if (aceptar){
       try {
@@ -56,6 +62,7 @@ function ProductoFormComponent() {
       } catch (e) {
         console.log(e);
       }
+      setLoading(false);
     }
   };
 
@@ -111,16 +118,22 @@ function ProductoFormComponent() {
           errors={errors}
           name="thumbnail"
         />
-        <Button variant="success" type="submit">
+        <BotonLoadComponent type="submit" variant="success" loading={loading}>
           {id ? 'Guardar' : 'Aceptar'}
-        </Button>
+        </BotonLoadComponent>
       </Form>
       
       {id && (
         <div>
           <h2>Eliminar Producto</h2>
-          <Button variant="danger" onClick={handleDelete}>Eliminar</Button>
-
+          <BotonLoadComponent 
+            type="button" 
+            variant="danger" 
+            loading={loading}
+            onClick={handleDelete}
+          >
+            Eliminar
+        </BotonLoadComponent>
         </div>
       )}
 
