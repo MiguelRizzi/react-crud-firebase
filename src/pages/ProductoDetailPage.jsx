@@ -29,9 +29,9 @@ function ProductoDetailPage() {
         <Card className="shadow-lg" style={{ padding: "1rem" }}>
           <Card.Body>
             <Card.Title className="display-5 mb-3">{producto.title}</Card.Title>
-            <hr className="my-4" />
-            <Card.Img src={producto.thumbnail} alt={producto.title} style={{ maxWidth: "400px" }} />
-            <hr className="my-4" />
+            <hr className="my-4"/>
+            <Card.Img src={producto.thumbnail} alt={producto.title} className="object-fit-cover" style={{ width: "450px", height: "300px" }} />
+            <hr className="my-4"/>
             <Card.Text>
               <strong>Precio:</strong> ${producto.price}
             </Card.Text>
