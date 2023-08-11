@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { toast } from 'react-hot-toast';
 import InputComponent from './InputComponent';
 import BotonLoadComponent from "./BotonLoadComponent";
+import { errorMessages } from "../utils/errorMessages";
 
 function ProductoFormComponent() {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({ mode: "onChange" });
@@ -45,7 +46,7 @@ function ProductoFormComponent() {
         toast.success("Producto creado con éxito");
       }
     } catch (e) {
-      console.log(e);
+      toast.error(errorMessages[e.code] || "Ha ocurrido un error, intentelo nuevamente.");
     }
     setLoading(false);
     navigate("/productos");
@@ -60,10 +61,10 @@ function ProductoFormComponent() {
         toast.success("Producto eliminado con éxito");
         navigate("/productos");
       } catch (e) {
-        console.log(e);
+        toast.error(errorMessages[e.code] || "Ha ocurrido un error, intentelo nuevamente.");
       }
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   return (
@@ -124,7 +125,7 @@ function ProductoFormComponent() {
       </Form>
       
       {id && (
-        <div>
+        <div className='mt-5'>
           <h2>Eliminar Producto</h2>
           <BotonLoadComponent 
             type="button" 
@@ -136,9 +137,7 @@ function ProductoFormComponent() {
         </BotonLoadComponent>
         </div>
       )}
-
-      
-      <Button variant="primary" as={Link} to="/productos">Volver a Productos</Button>
+      <Button className="mt-5" variant="primary" as={Link} to="/productos">Volver a Productos</Button>
     </div>
   );
 }

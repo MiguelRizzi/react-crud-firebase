@@ -3,7 +3,7 @@ import ProductoFormComponent from "../components/ProductoFormComponent.jsx";
 
 function ProductoCreatePage() {
   return (
-    <Container className="text-center p-4">
+    <Container className="text-center m-5 p-4">
       <h1 className="display-5 mb-3">Crear producto</h1>
       <ProductoFormComponent />
     </Container>

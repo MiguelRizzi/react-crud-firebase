@@ -34,7 +34,7 @@ const HomePage = () => {
         </div>
       </Container>
 
-      <Container className="text-center p-4">
+      <Container className="text-center m-5 p-4">
         <h2 className="display-5 mb-3">¿Quienes Somos?</h2>
         <p className="lead">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur,

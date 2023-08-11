@@ -17,7 +17,7 @@ function AppRouter() {
       <Router>
         <AuthProvider>
           <NavbarComponent />
-          <Container fluid className="p-0">
+          <Container fluid className="p-0 min-vh-100">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/productos" element={<ProductosPage />} />

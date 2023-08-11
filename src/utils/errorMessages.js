@@ -7,5 +7,8 @@ export const errorMessages = {
   "auth/wrong-password": "Contraseña incorrecta.",
   "auth/user-not-found": "No se encontró el usuario.",
   "auth/user-disabled": "La cuenta de usuario está deshabilitada.",
-  "auth/too-many-requests": "Demasiados intentos de inicio de sesión. Por favor, inténtelo de nuevo más tarde."
+  "auth/too-many-requests": "Demasiados intentos de inicio de sesión. Por favor, inténtelo de nuevo más tarde.",
+  "not-found": "El documento no se encontró.",
+  "aborted": "La operación fue cancelada.",
+  "unavailable": "Firebase Firestore no está disponible en este momento."
 };
